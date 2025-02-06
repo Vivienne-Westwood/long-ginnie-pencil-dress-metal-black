@@ -128,14 +128,17 @@ function displayCatHeart() {
 }
 
 // Display flowers.gif around the cat-heart.gif in a heart shape
+// Function to display flowers in a heart shape enclosing cat-heart.gif
 function displayFlowersAroundCatHeart() {
     let imageContainer = document.getElementById('image-container');
     let flowerPositions = [
-        { top: '15%', left: '50%' }, { top: '25%', left: '60%' }, { top: '35%', left: '70%' },
-        { top: '45%', left: '75%' }, { top: '55%', left: '70%' }, { top: '65%', left: '60%' },
-        { top: '75%', left: '50%' }, { top: '65%', left: '40%' }, { top: '55%', left: '30%' },
-        { top: '45%', left: '25%' }, { top: '35%', left: '30%' }, { top: '25%', left: '40%' },
-        { top: '20%', left: '45%' }, { top: '40%', left: '80%' }, { top: '40%', left: '20%' }
+        { top: '10%', left: '50%' }, { top: '15%', left: '42%' }, { top: '15%', left: '58%' },
+        { top: '22%', left: '35%' }, { top: '22%', left: '65%' }, { top: '30%', left: '30%' },
+        { top: '30%', left: '70%' }, { top: '38%', left: '28%' }, { top: '38%', left: '72%' },
+        { top: '46%', left: '25%' }, { top: '46%', left: '75%' }, { top: '54%', left: '28%' },
+        { top: '54%', left: '72%' }, { top: '62%', left: '33%' }, { top: '62%', left: '67%' },
+        { top: '70%', left: '40%' }, { top: '70%', left: '60%' }, { top: '76%', left: '45%' },
+        { top: '76%', left: '55%' }, { top: '82%', left: '50%' } // Bottom center heart point
     ];
 
     flowerPositions.forEach(position => {
@@ -145,7 +148,7 @@ function displayFlowersAroundCatHeart() {
         flowerImage.style.position = 'absolute';
         flowerImage.style.top = position.top;
         flowerImage.style.left = position.left;
-        flowerImage.style.transform = 'translate(-50%, -50%)';
+        flowerImage.style.transform = 'translate(-50%, -50%) scale(0.8)';
         imageContainer.appendChild(flowerImage);
     });
 }
