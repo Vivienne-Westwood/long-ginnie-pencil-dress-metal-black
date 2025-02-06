@@ -131,10 +131,11 @@ function displayCatHeart() {
 function displayFlowersAroundCatHeart() {
     let imageContainer = document.getElementById('image-container');
     let flowerPositions = [
-        { top: '10%', left: '50%' }, { top: '20%', left: '60%' }, { top: '30%', left: '70%' },
-        { top: '40%', left: '80%' }, { top: '50%', left: '70%' }, { top: '60%', left: '60%' },
-        { top: '70%', left: '50%' }, { top: '60%', left: '40%' }, { top: '50%', left: '30%' },
-        { top: '40%', left: '20%' }, { top: '30%', left: '30%' }, { top: '20%', left: '40%' }
+        { top: '15%', left: '50%' }, { top: '25%', left: '60%' }, { top: '35%', left: '70%' },
+        { top: '45%', left: '75%' }, { top: '55%', left: '70%' }, { top: '65%', left: '60%' },
+        { top: '75%', left: '50%' }, { top: '65%', left: '40%' }, { top: '55%', left: '30%' },
+        { top: '45%', left: '25%' }, { top: '35%', left: '30%' }, { top: '25%', left: '40%' },
+        { top: '20%', left: '45%' }, { top: '40%', left: '80%' }, { top: '40%', left: '20%' }
     ];
 
     flowerPositions.forEach(position => {
