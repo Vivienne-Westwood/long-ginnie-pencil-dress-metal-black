@@ -53,7 +53,7 @@ button:hover {
     position: fixed;
     top: 80%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -80%);
     display: none; /* Hidden initially */
     z-index: 9999; /* Ensure it's on top */
 }
