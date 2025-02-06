@@ -22,6 +22,11 @@ body {
     font-size: 52px;
 }
 
+#question-container.final-message {
+    font-size: 14px; /* Adjust as needed */
+    text-align: center; /* Keeps it balanced with the GIFs */
+}
+
 #options {
     margin-top: 20px;
 }
@@ -42,4 +47,35 @@ button {
 button:hover {
     background-color: #ff99cc;
     transform: scale(1.1);
+}
+
+#ianhead-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Hidden initially */
+    z-index: 9999; /* Ensure it's on top */
+}
+
+#ianhead-logo {
+    width: 50px; /* Start small */
+    height: 67px;
+    animation: none;
+}
+
+/* Spinning Batman-style animation */
+@keyframes spin-grow-shrink {
+    0% {
+        transform: scale(0.2) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(7) rotate(360deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.2) rotate(720deg);
+        opacity: 0;
+    }
 }
