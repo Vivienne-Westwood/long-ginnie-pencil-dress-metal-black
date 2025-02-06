@@ -123,7 +123,30 @@ function displayCatHeart() {
         imageContainer.appendChild(catHeartImage);
         document.getElementById('question-container').style.display = 'block';
         displayFinalQuestion();
+        displayFlowersAroundCatHeart();
     };
+}
+
+// Display flowers.gif around the cat-heart.gif in a heart shape
+function displayFlowersAroundCatHeart() {
+    let imageContainer = document.getElementById('image-container');
+    let flowerPositions = [
+        { top: '10%', left: '50%' }, { top: '20%', left: '60%' }, { top: '30%', left: '70%' },
+        { top: '40%', left: '80%' }, { top: '50%', left: '70%' }, { top: '60%', left: '60%' },
+        { top: '70%', left: '50%' }, { top: '60%', left: '40%' }, { top: '50%', left: '30%' },
+        { top: '40%', left: '20%' }, { top: '30%', left: '30%' }, { top: '20%', left: '40%' }
+    ];
+
+    flowerPositions.forEach(position => {
+        let flowerImage = new Image();
+        flowerImage.src = 'flowers.gif';
+        flowerImage.alt = 'Flowers';
+        flowerImage.style.position = 'absolute';
+        flowerImage.style.top = position.top;
+        flowerImage.style.left = position.left;
+        flowerImage.style.transform = 'translate(-50%, -50%)';
+        imageContainer.appendChild(flowerImage);
+    });
 }
 
 // Display cat.gif during the "Will you Be My Valentine?" question
