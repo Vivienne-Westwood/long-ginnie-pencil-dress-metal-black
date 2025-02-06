@@ -32,6 +32,13 @@ function nextQuestion(index) {
         displayCatGif(); // Display cat gif when this question is shown
     }
 
+    // Apply smaller font size for the last question
+    if (index === questions.length - 1) {
+        questionElement.style.fontSize = '32px'; // Set smaller font size
+    } else {
+        questionElement.style.fontSize = '54px'; // Reset to default font size
+    }
+
     // Create buttons for the answers
     questions[index].answers.forEach(answer => {
         let button = document.createElement("button");
