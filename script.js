@@ -116,41 +116,42 @@ function flashRainbowColors(callback) {
 function displayCatHeart() {
     document.getElementById('image-container').innerHTML = '';
     let imageContainer = document.getElementById('image-container');
-    let catHeartImage = new Image();
-    catHeartImage.src = 'cat-heart.gif'; 
-    catHeartImage.alt = 'Cat Heart';
-    catHeartImage.onload = () => {
-        imageContainer.appendChild(catHeartImage);
-        document.getElementById('question-container').style.display = 'block';
-        displayFinalQuestion();
-        displayFlowersAroundCatHeart();
-    };
-}
 
-// Display flowers.gif around the cat-heart.gif in a heart shape
-// Function to display flowers in a heart shape enclosing cat-heart.gif
-function displayFlowersAroundCatHeart() {
-    let imageContainer = document.getElementById('image-container');
-    let flowerPositions = [
-        { top: '10%', left: '50%' }, { top: '15%', left: '42%' }, { top: '15%', left: '58%' },
-        { top: '22%', left: '35%' }, { top: '22%', left: '65%' }, { top: '30%', left: '30%' },
-        { top: '30%', left: '70%' }, { top: '38%', left: '28%' }, { top: '38%', left: '72%' },
-        { top: '46%', left: '25%' }, { top: '46%', left: '75%' }, { top: '54%', left: '28%' },
-        { top: '54%', left: '72%' }, { top: '62%', left: '33%' }, { top: '62%', left: '67%' },
-        { top: '70%', left: '40%' }, { top: '70%', left: '60%' }, { top: '76%', left: '45%' },
-        { top: '76%', left: '55%' }, { top: '82%', left: '50%' } // Bottom center heart point
-    ];
+    // Create a container for the cat-heart.gif and flowers.gif
+    let heartContainer = document.createElement('div');
+    heartContainer.style.display = 'flex';
+    heartContainer.style.alignItems = 'center';
+    heartContainer.style.justifyContent = 'center';
 
-    flowerPositions.forEach(position => {
+    // Add flowers.gif to the left side
+    for (let i = 0; i < 3; i++) {
         let flowerImage = new Image();
         flowerImage.src = 'flowers.gif';
         flowerImage.alt = 'Flowers';
-        flowerImage.style.position = 'absolute';
-        flowerImage.style.top = position.top;
-        flowerImage.style.left = position.left;
-        flowerImage.style.transform = 'translate(-50%, -50%) scale(0.8)';
-        imageContainer.appendChild(flowerImage);
-    });
+        flowerImage.className = 'flower-image';
+        heartContainer.appendChild(flowerImage);
+    }
+
+    // Add cat-heart.gif
+    let catHeartImage = new Image();
+    catHeartImage.src = 'cat-heart.gif';
+    catHeartImage.alt = 'Cat Heart';
+    catHeartImage.onload = () => {
+        heartContainer.appendChild(catHeartImage);
+
+        // Add flowers.gif to the right side
+        for (let i = 0; i < 3; i++) {
+            let flowerImage = new Image();
+            flowerImage.src = 'flowers.gif';
+            flowerImage.alt = 'Flowers';
+            flowerImage.className = 'flower-image';
+            heartContainer.appendChild(flowerImage);
+        }
+
+        imageContainer.appendChild(heartContainer);
+        document.getElementById('question-container').style.display = 'block';
+        displayFinalQuestion();
+    };
 }
 
 // Display cat.gif during the "Will you Be My Valentine?" question
