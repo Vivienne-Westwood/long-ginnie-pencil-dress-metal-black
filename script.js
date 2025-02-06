@@ -5,11 +5,12 @@ const questions = [
     { text: "As you know, there’s a specific day coming up!", answers: ["Mhmm !!!"] },
     { text: "And you, being the one that I love most, I just want to ask you something very important!", answers: ["What is it :ooo"] },
     { text: "Will you Be My Valentine? 💖", answers: ["Yes 😍", "No 😔"], special: true },
-    { text: "YIPPEEEEE!!! 🎉 I made a special gift for you!", answers: ["🎁 Open Your Gift! 🎁"], link: "YOUR_LINK_HERE" }
+    { text: "YIPPEEEEE!!! For saying yes and being the coolest most loving most adorable person ever, 🎉 I made a special gift for you that you could always look back on no matter what! 🎉", answers: ["🎁 Open Your Gift! 🎁"], link: "YOUR_LINK_HERE" }
 ];
 
 let currentQuestion = 0;
 let noButtonPressCount = 0;
+let catGifDisplayed = false; // Track if the cat gif is displayed
 
 function nextQuestion(index) {
     if (index >= questions.length) return; // Stop if we run out of questions
@@ -23,18 +24,13 @@ function nextQuestion(index) {
     questionElement.innerHTML = "";
     optionsContainer.innerHTML = "";
 
-    // Check if the current question is the "Will you be my valentine?" question
-    if (questions[index].text === "Will you Be My Valentine? 💖") {
-        let catImage = new Image();
-        catImage.src = 'cat.gif';
-        catImage.alt = 'Cat';
-        catImage.style.display = 'block';
-        catImage.style.margin = '0 auto 20px';
-        questionElement.appendChild(catImage);
-    }
-
     // Set the question text
     questionElement.innerHTML += questions[index].text;
+
+    // Display cat.gif only for the "Will you Be My Valentine?" question (index 4)
+    if (index === 4 && !catGifDisplayed) {
+        displayCatGif(); // Display cat gif when this question is shown
+    }
 
     // Create buttons for the answers
     questions[index].answers.forEach(answer => {
@@ -58,7 +54,6 @@ function nextQuestion(index) {
     });
 }
 
-
 // Handles "Will You Be My Valentine?" responses
 function selectOption(option) {
     let questionDiv = document.getElementById('question-container');
@@ -66,10 +61,12 @@ function selectOption(option) {
     let noButton = document.querySelector("#options button:last-child");
 
     if (option === 'yes') {
+        // Hide cat.gif when the user says "Yes"
+        hideCatGif(); // Hide cat gif
         flashRainbowColors(() => {
             questionDiv.style.display = 'none';
             displayCatHeart();
-            nextQuestion(5);
+            nextQuestion(5);  // Proceed to next question after "Yes"
         });
     } else if (option === 'no') {
         noButtonPressCount++;
@@ -122,6 +119,25 @@ function displayCatHeart() {
     };
 }
 
+// Display cat.gif during the "Will you Be My Valentine?" question
+function displayCatGif() {
+    catGifDisplayed = true; // Set flag to true so it doesn't get shown again
+    let imageContainer = document.getElementById('image-container');
+    let catGifImage = new Image();
+    catGifImage.src = 'cat.gif'; // The cat gif file name
+    catGifImage.alt = 'Cat Gif';
+    imageContainer.appendChild(catGifImage);
+}
+
+// Hide cat.gif when the user clicks "Yes"
+function hideCatGif() {
+    let imageContainer = document.getElementById('image-container');
+    let catGifImage = document.querySelector('img[src="cat.gif"]');
+    if (catGifImage) {
+        imageContainer.removeChild(catGifImage);
+    }
+}
+
 // Display the final question with the gift link
 function displayFinalQuestion() {
     let finalQuestion = questions[5];
@@ -132,7 +148,7 @@ function displayFinalQuestion() {
     finalQuestion.answers.forEach(answer => {
         let button = document.createElement("button");
         button.innerText = answer;
-        button.onclick = () => window.location.href = finalQuestion.link;
+        button.onclick = () => spinIanHeadAndRedirect(finalQuestion.link);
         optionsContainer.appendChild(button);
     });
 }
@@ -146,6 +162,35 @@ function moveButtonToRandomPosition(button) {
     button.style.position = 'absolute';
     button.style.left = randomX + 'px';
     button.style.top = randomY + 'px';
+}
+
+// Function to spin the IanHead logo and redirect
+function spinIanHeadAndRedirect(url) {
+    let overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "9999";
+
+    let img = document.createElement("img");
+    img.src = "IanHead.png"; // Ensure the file exists
+    img.style.width = "100px"; // Initial size
+    img.style.height = "100px";
+    img.style.animation = "spin-grow-shrink 1.5s ease-in-out forwards"; // Apply the spinning animation
+
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    // Redirect after animation
+    setTimeout(() => {
+        window.location.href = url;
+    }, 1500); // 1.5 seconds delay for animation
 }
 
 // Initialize the first question
