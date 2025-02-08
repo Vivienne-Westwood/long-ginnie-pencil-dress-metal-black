@@ -5,7 +5,7 @@ const questions = [
     { text: "As you know, there’s a specific day coming up!", answers: ["Mhmm !!!"] },
     { text: "And you, being the one that I love most, I just want to ask you something very important!", answers: ["What is it :ooo"] },
     { text: "Will you Be My Valentine? 💖", answers: ["Yes 😍", "No 😔"], special: true },
-    { text: "YIPPEEEEE!!! For saying yes and being the coolest most loving most adorable person ever, 🎉 I made a special gift for you that you could always look back on no matter what! 🎉", answers: ["🎁 Open Your Gift! 🎁"], link: "YOUR_LINK_HERE" }
+    { text: "YIPPEEEEE!!! For saying yes and being the coolest most loving most adorable person ever, 🎉 I made a special gift for you that you could always look back on no matter what! 🎉", answers: ["🎁 Open Your Gift! 🎁"], link: "https://heyzine.com/flip-book/2f34b5b8a7.html" }
 ];
 
 let currentQuestion = 0;
